@@ -11,3 +11,9 @@ git log --stat=1000 --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset
 ```
 git log -p --stat=1000 --graph
 ```
+
+## git简易报表
+
+```
+git_stat generate
+```
