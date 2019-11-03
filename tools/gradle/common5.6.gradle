@@ -1,14 +1,13 @@
-plugins {
-    id 'java'
-    id 'java-library'
-    id 'maven-publish'
-}
+apply plugin: 'java'
+apply plugin: 'java-library'
+apply plugin: 'maven-publish'
+
 repositories {
-    mavenLocal()
-    mavenLocal{System.properties['user.home'] + "/.m2/publish_repository/releases"}
-    mavenLocal{System.properties['user.home'] + "/.m2/publish_repository/snapshots"}
-    jcenter()
-    mavenCentral()
+  mavenLocal()
+  mavenLocal{System.properties['user.home'] + "/.m2/publish_repository/releases"}
+  mavenLocal{System.properties['user.home'] + "/.m2/publish_repository/snapshots"}
+  jcenter()
+  mavenCentral()
 }
 task sourceJar(type: Jar) {
   from sourceSets.main.allJava
