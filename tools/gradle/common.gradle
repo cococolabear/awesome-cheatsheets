@@ -1,0 +1,40 @@
+plugins {
+    id 'java'
+    id 'java-library'
+    id 'maven-publish'
+}
+repositories {
+    mavenLocal()
+    mavenLocal{System.properties['user.home'] + "/.m2/publish_repository/releases"}
+    mavenLocal{System.properties['user.home'] + "/.m2/publish_repository/snapshots"}
+    jcenter()
+    mavenCentral()
+}
+task sourceJar(type: Jar) {
+  from sourceSets.main.allJava
+  classifier "sources"
+}
+
+publishing {
+  publications{
+    mavenJava(MavenPublication) {
+      artifact sourceJar
+      from components.java
+    }
+  }
+  repositories {
+    maven {
+      def releasesRepoUrl =  System.properties['user.home'] + "/.m2/publish_repository/releases"
+      def snapshotsRepoUrl = System.properties['user.home'] + "/.m2/publish_repository/snapshots"
+      url = version.endsWith('SNAPSHOT') ? snapshotsRepoUrl : releasesRepoUrl
+    }
+  }
+}
+
+task printProps {
+  doLast {
+    println System.properties['user.home']
+    println System.properties
+    println project.gradle.gradleUserHomeDir
+  }
+}
