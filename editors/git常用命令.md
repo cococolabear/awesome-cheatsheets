@@ -17,3 +17,19 @@ git log -p --stat=1000 --graph
 ```
 git_stat generate
 ```
+
+
+##  将在所有分支上输出最新标记的提交的标记
+```
+git describe --tags $(git rev-list --tags --max-count=1)
+```
+
+##  要获取最新tag
+```
+git describe --tags
+```
+
+##  要获取最新的带注释tag
+```
+git describe --abbrev=0
+```
